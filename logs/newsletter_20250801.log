@@ -1,0 +1,220 @@
+2025-08-01 11:10:47,531 - __main__ - INFO - Starting AI Newsletter Agent in once mode
+2025-08-01 11:10:47,531 - __main__ - INFO - Configuration: 6 topics, 2 recipients
+2025-08-01 11:10:47,977 - email_service.gmail_client - INFO - Gmail API authentication successful
+2025-08-01 11:10:47,977 - __main__ - INFO - Running newsletter generation once...
+2025-08-01 11:10:47,977 - scheduler.newsletter_scheduler - INFO - Running newsletter generation once...
+2025-08-01 11:10:47,978 - scheduler.newsletter_scheduler - INFO - ==================================================
+2025-08-01 11:10:47,978 - scheduler.newsletter_scheduler - INFO - Starting newsletter generation process...
+2025-08-01 11:10:47,978 - scheduler.newsletter_scheduler - INFO - ==================================================
+2025-08-01 11:10:47,978 - scheduler.newsletter_scheduler - INFO - Step 1: Crawling data for all topics...
+2025-08-01 11:10:47,978 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: AI news
+2025-08-01 11:10:47,978 - crawlers.web_crawler - INFO - Fetching live data for topic: AI news
+2025-08-01 11:10:49,478 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for AI news
+2025-08-01 11:10:54,191 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:10:54,448 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:10:55,418 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:10:55,702 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:10:56,736 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:10:56,840 - crawlers.web_crawler - INFO - Found 5 relevant articles for AI news
+2025-08-01 11:10:58,842 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Machine Learning breakthroughs
+2025-08-01 11:10:58,842 - crawlers.web_crawler - INFO - Fetching live data for topic: Machine Learning breakthroughs
+2025-08-01 11:11:00,022 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Machine Learning breakthroughs
+2025-08-01 11:11:04,925 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:11:05,073 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:11:06,032 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:11:06,186 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:11:06,354 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:11:06,484 - crawlers.web_crawler - INFO - Found 5 relevant articles for Machine Learning breakthroughs
+2025-08-01 11:11:08,487 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Tech startups
+2025-08-01 11:11:08,487 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech startups
+2025-08-01 11:11:09,709 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech startups
+2025-08-01 11:11:14,538 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:11:14,674 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:11:14,926 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:11:15,453 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:11:16,504 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:11:16,618 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech startups
+2025-08-01 11:11:18,621 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: OpenAI updates
+2025-08-01 11:11:18,621 - crawlers.web_crawler - INFO - Fetching live data for topic: OpenAI updates
+2025-08-01 11:11:19,723 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for OpenAI updates
+2025-08-01 11:11:24,609 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:11:24,905 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:11:25,380 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:11:28,414 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:11:31,329 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:11:31,435 - crawlers.web_crawler - INFO - Found 5 relevant articles for OpenAI updates
+2025-08-01 11:11:33,438 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Google AI developments
+2025-08-01 11:11:33,438 - crawlers.web_crawler - INFO - Fetching live data for topic: Google AI developments
+2025-08-01 11:11:39,860 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Google AI developments
+2025-08-01 11:11:43,325 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:11:45,343 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:11:46,529 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:11:51,286 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:11:51,761 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:11:51,852 - crawlers.web_crawler - INFO - Found 5 relevant articles for Google AI developments
+2025-08-01 11:11:53,855 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Tech industry trends
+2025-08-01 11:11:53,855 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech industry trends
+2025-08-01 11:11:55,467 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech industry trends
+2025-08-01 11:11:59,816 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:12:00,755 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:12:01,053 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:12:02,013 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:12:56,411 - crawlers.web_crawler - WARNING - Failed to crawl https://techcrunch.com/category/artificial-intelligence/: Unexpected error in _crawl_web at line 763 in _crawl_web (../../.pyenv/versions/3.11.2/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://techcrunch.com/category/artificial-intelligence/", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768   
+2025-08-01 11:12:56,530 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech industry trends
+2025-08-01 11:12:58,531 - scheduler.newsletter_scheduler - INFO - Total articles collected: 30
+2025-08-01 11:12:58,531 - scheduler.newsletter_scheduler - INFO - Step 2: Processing articles through AI agents...
+2025-08-01 11:12:58,531 - agents.newsletter_agents - INFO - Processing 30 articles through agent workflow
+2025-08-01 11:12:58,652 - agents.newsletter_agents - INFO - Research agent processing articles...
+2025-08-01 11:13:12,503 - agents.newsletter_agents - INFO - Research agent completed analysis
+2025-08-01 11:13:12,505 - agents.newsletter_agents - INFO - Analysis agent processing research...
+2025-08-01 11:13:31,206 - agents.newsletter_agents - INFO - Analysis agent completed insights
+2025-08-01 11:13:31,207 - agents.newsletter_agents - INFO - Opinion agent creating commentary...
+2025-08-01 11:13:44,272 - agents.newsletter_agents - INFO - Opinion agent completed commentary
+2025-08-01 11:13:44,273 - agents.newsletter_agents - INFO - Editor agent compiling final newsletter...
+2025-08-01 11:14:00,942 - agents.newsletter_agents - INFO - Editor agent completed final newsletter
+2025-08-01 11:14:00,943 - agents.newsletter_agents - INFO - Agent workflow completed successfully
+2025-08-01 11:14:00,943 - scheduler.newsletter_scheduler - INFO - Step 3: Sending newsletter via email...
+2025-08-01 11:14:01,763 - email_service.gmail_client - INFO - Email sent successfully. Message ID: 1986428a27553415
+2025-08-01 11:14:01,763 - email_service.gmail_client - INFO - Recipients: ap3617180@gmail.com, mahdevap2.0@gmail.com
+2025-08-01 11:14:01,763 - email_service.gmail_client - INFO - Newsletter sent successfully to 2 recipients
+2025-08-01 11:14:01,763 - scheduler.newsletter_scheduler - INFO - Newsletter generation and delivery completed successfully!
+2025-08-01 11:14:01,764 - scheduler.newsletter_scheduler - INFO - Newsletter scheduler stopped
+2025-08-01 11:14:01,764 - __main__ - INFO - Application shutdown complete
+2025-08-01 11:16:52,162 - __main__ - INFO - Starting AI Newsletter Agent in once mode
+2025-08-01 11:16:52,162 - __main__ - INFO - Configuration: 6 topics, 2 recipients
+2025-08-01 11:16:52,169 - email_service.gmail_client - INFO - Gmail API authentication successful
+2025-08-01 11:16:52,169 - __main__ - INFO - Running newsletter generation once...
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - Running newsletter generation once...
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - ==================================================
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - Starting newsletter generation process...
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - ==================================================
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - Step 1: Crawling data for all topics...
+2025-08-01 11:16:52,169 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: AI news
+2025-08-01 11:16:52,169 - crawlers.web_crawler - INFO - Fetching live data for topic: AI news
+2025-08-01 11:16:53,991 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for AI news
+2025-08-01 11:16:58,779 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:16:59,306 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:17:00,468 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:17:01,876 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:17:02,141 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:17:02,249 - crawlers.web_crawler - INFO - Found 5 relevant articles for AI news
+2025-08-01 11:17:04,250 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Machine Learning breakthroughs
+2025-08-01 11:17:04,251 - crawlers.web_crawler - INFO - Fetching live data for topic: Machine Learning breakthroughs
+2025-08-01 11:17:05,391 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Machine Learning breakthroughs
+2025-08-01 11:17:09,167 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:17:11,259 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:17:11,823 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:17:12,133 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:17:13,161 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:17:13,280 - crawlers.web_crawler - INFO - Found 5 relevant articles for Machine Learning breakthroughs
+2025-08-01 11:17:15,283 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Tech startups
+2025-08-01 11:17:15,283 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech startups
+2025-08-01 11:17:16,433 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech startups
+2025-08-01 11:17:20,797 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:17:22,928 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:17:23,251 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:17:23,556 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:17:25,153 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:17:25,267 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech startups
+2025-08-01 11:17:27,270 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: OpenAI updates
+2025-08-01 11:17:27,270 - crawlers.web_crawler - INFO - Fetching live data for topic: OpenAI updates
+2025-08-01 11:17:28,432 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for OpenAI updates
+2025-08-01 11:17:33,537 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:17:35,624 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:17:39,143 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:17:39,728 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:17:40,005 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:17:40,127 - crawlers.web_crawler - INFO - Found 5 relevant articles for OpenAI updates
+2025-08-01 11:17:42,129 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Google AI developments
+2025-08-01 11:17:42,129 - crawlers.web_crawler - INFO - Fetching live data for topic: Google AI developments
+2025-08-01 11:17:50,826 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Google AI developments
+2025-08-01 11:18:10,666 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:18:18,896 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:18:28,615 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:18:32,251 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:18:51,948 - crawlers.web_crawler - WARNING - Failed to crawl https://venturebeat.com/ai/: Unexpected error in _crawl_web at line 763 in _crawl_web (../../.pyenv/versions/3.11.2/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://venturebeat.com/ai/", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768   
+2025-08-01 11:18:52,032 - crawlers.web_crawler - INFO - Found 1 relevant articles for Google AI developments
+2025-08-01 11:18:54,032 - scheduler.newsletter_scheduler - INFO - Crawling data for topic: Tech industry trends
+2025-08-01 11:18:54,032 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech industry trends
+2025-08-01 11:18:54,541 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech industry trends
+2025-08-01 11:18:58,423 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2025-08-01 11:19:02,242 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2025-08-01 11:19:02,747 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2025-08-01 11:19:03,301 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2025-08-01 11:19:07,616 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2025-08-01 11:19:07,723 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech industry trends
+2025-08-01 11:19:09,726 - scheduler.newsletter_scheduler - INFO - Total articles collected: 26
+2025-08-01 11:19:09,726 - scheduler.newsletter_scheduler - INFO - Step 2: Processing articles through AI agents...
+2025-08-01 11:19:09,726 - agents.newsletter_agents - INFO - Processing 26 articles through agent workflow
+2025-08-01 11:19:09,748 - agents.newsletter_agents - INFO - Research agent processing articles...
+2025-08-01 11:19:38,377 - agents.newsletter_agents - INFO - Research agent completed analysis
+2025-08-01 11:19:38,379 - agents.newsletter_agents - INFO - Analysis agent processing research...
+2025-08-01 11:19:59,013 - agents.newsletter_agents - INFO - Analysis agent completed insights
+2025-08-01 11:19:59,014 - agents.newsletter_agents - INFO - Opinion agent creating commentary...
+2025-08-01 11:20:14,508 - agents.newsletter_agents - INFO - Opinion agent completed commentary
+2025-08-01 11:20:14,509 - agents.newsletter_agents - INFO - Editor agent compiling final newsletter...
+2025-08-01 11:20:31,087 - agents.newsletter_agents - INFO - Editor agent completed final newsletter
+2025-08-01 11:20:31,088 - agents.newsletter_agents - INFO - Agent workflow completed successfully
+2025-08-01 11:20:31,088 - scheduler.newsletter_scheduler - INFO - Generated newsletter content length: 7021
+2025-08-01 11:20:31,088 - scheduler.newsletter_scheduler - INFO - Newsletter preview: 
+# **The AI Revolution: Balancing Innovation with Responsibility**
+
+## **Subject Line Suggestion:**
+AI's New Frontier: Privacy Concerns, Breakthrough Models & The Infrastructure Revolution
+
+---
+
+## **...
+2025-08-01 11:20:31,088 - scheduler.newsletter_scheduler - INFO - Step 3: Sending newsletter via email...
+2025-08-01 11:20:31,088 - email_service.gmail_client - INFO - Formatting newsletter content length: 7021
+2025-08-01 11:20:31,088 - email_service.gmail_client - INFO - Content preview: 
+# **The AI Revolution: Balancing Innovation with Responsibility**
+
+## **Subject Line Suggestion:**
+AI's New Frontier: Privacy Concerns, Breakthrough Models & The Infrastructure Revolution
+
+---
+
+## **...
+2025-08-01 11:20:33,524 - email_service.gmail_client - INFO - Email sent successfully. Message ID: 198642e9c85cff88
+2025-08-01 11:20:33,524 - email_service.gmail_client - INFO - Recipients: ap3617180@gmail.com, mahdevap2.0@gmail.com
+2025-08-01 11:20:33,524 - email_service.gmail_client - INFO - Newsletter sent successfully to 2 recipients
+2025-08-01 11:20:33,524 - scheduler.newsletter_scheduler - INFO - Newsletter generation and delivery completed successfully!
+2025-08-01 11:20:33,526 - scheduler.newsletter_scheduler - INFO - Newsletter scheduler stopped
+2025-08-01 11:20:33,526 - __main__ - INFO - Application shutdown complete
