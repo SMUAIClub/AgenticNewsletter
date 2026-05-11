@@ -5,6 +5,7 @@ import logging
 from typing import List
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from crawlers.web_crawler import WebCrawler
 from agents.newsletter_agents import NewsletterAgents
@@ -92,14 +93,24 @@ class NewsletterScheduler:
             run_logger.error(f"Error in newsletter generation: {str(e)}")
             raise
 
+    @staticmethod
+    def _to_local_time(time_str: str) -> str:
+        """Convert HH:MM in the configured timezone to local system time."""
+        tz = ZoneInfo(config.TIMEZONE)
+        now = datetime.now()
+        hour, minute = map(int, time_str.split(":"))
+        dt_in_tz = datetime(now.year, now.month, now.day, hour, minute, tzinfo=tz)
+        return dt_in_tz.astimezone().strftime("%H:%M")
+
     def schedule_newsletter(self):
         """Schedule newsletter generation at configured times"""
-        logger.info("Setting up newsletter schedule...")
+        logger.info(f"Setting up newsletter schedule (timezone: {config.TIMEZONE})...")
         for time_str in config.SCHEDULE_TIMES:
             time_str = time_str.strip()
-            logger.info(f"Scheduling newsletter for {time_str}")
-            schedule.every().day.at(time_str).do(self._run_async_newsletter)
-        logger.info(f"Newsletter scheduled for times: {', '.join(config.SCHEDULE_TIMES)}")
+            local_time = self._to_local_time(time_str)
+            logger.info(f"Scheduling newsletter for {time_str} {config.TIMEZONE} → {local_time} local")
+            schedule.every().day.at(local_time).do(self._run_async_newsletter)
+        logger.info(f"Newsletter scheduled for: {', '.join(config.SCHEDULE_TIMES)} ({config.TIMEZONE})")
 
     def _run_async_newsletter(self):
         """Wrapper to run async newsletter function from scheduler"""

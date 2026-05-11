@@ -12,7 +12,7 @@ class Config:
     NEWSLETTER_TITLE = os.getenv("NEWSLETTER_TITLE", "Daily AI Newsletter")
     
     # Scheduling Configuration
-    SCHEDULE_TIMES = os.getenv("SCHEDULE_TIMES", "08:00,18:00").split(",")
+    SCHEDULE_TIMES = os.getenv("SCHEDULE_TIMES", "08:00").split(",")
     TIMEZONE = os.getenv("TIMEZONE", "Asia/Kolkata")
     
     # Crawling Configuration
