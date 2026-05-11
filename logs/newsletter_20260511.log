@@ -1,0 +1,79 @@
+2026-05-11 03:31:30,437 - __main__ - INFO - Starting AI Newsletter Agent in schedule mode
+2026-05-11 03:31:30,437 - __main__ - INFO - Configuration: 6 topics
+2026-05-11 03:31:30,454 - __main__ - INFO - Starting scheduled newsletter service...
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Setting up newsletter schedule...
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Scheduling newsletter for 08:00
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Scheduling newsletter for 18:00
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Newsletter scheduled for times: 08:00, 18:00
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Newsletter scheduler started. Press Ctrl+C to stop.
+2026-05-11 03:31:30,454 - scheduler.newsletter_scheduler - INFO - Next scheduled runs: [Every 1 day at 08:00:00 do _run_async_newsletter() (last run: [never], next run: 2026-05-11 08:00:00), Every 1 day at 18:00:00 do _run_async_newsletter() (last run: [never], next run: 2026-05-11 18:00:00)]
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: AI news
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: Machine Learning breakthroughs
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech startups
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: OpenAI updates
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: Google AI developments
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech industry trends
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for AI news
+2026-05-11 03:31:40,355 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Machine Learning breakthroughs
+2026-05-11 03:31:40,368 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Tech startups
+2026-05-11 03:31:40,379 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for OpenAI updates
+2026-05-11 03:31:40,390 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Google AI developments
+2026-05-11 03:31:40,403 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Tech industry trends
+2026-05-11 03:31:40,520 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech industry trends
+2026-05-11 03:31:40,658 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for AI news
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech startups
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for OpenAI updates
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Google AI developments
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Machine Learning breakthroughs
+2026-05-11 03:31:42,291 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Tech industry trends
+2026-05-11 03:31:42,431 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for OpenAI updates
+2026-05-11 03:31:42,447 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Machine Learning breakthroughs
+2026-05-11 03:31:42,683 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for AI news
+2026-05-11 03:31:42,709 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Google AI developments
+2026-05-11 03:31:43,422 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Tech startups
+2026-05-11 03:31:45,078 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,305 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,411 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,614 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:45,853 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,989 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:46,262 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:46,486 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:46,535 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:46,681 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:47,119 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:47,368 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:47,963 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:48,322 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:48,449 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:48,960 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:49,566 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:50,657 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:51,299 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:51,692 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,000 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,383 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,619 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:52,836 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:53,111 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:53,458 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:53,700 - crawlers.web_crawler - INFO - Found 5 relevant articles for OpenAI updates
+2026-05-11 03:31:53,740 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech industry trends
+2026-05-11 03:31:53,987 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,077 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,166 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,187 - crawlers.web_crawler - INFO - Found 5 relevant articles for Machine Learning breakthroughs
+2026-05-11 03:31:54,277 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,284 - crawlers.web_crawler - INFO - Found 5 relevant articles for Google AI developments
+2026-05-11 03:31:54,339 - crawlers.web_crawler - INFO - Found 5 relevant articles for AI news
+2026-05-11 03:31:54,380 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech startups
+2026-05-11 03:31:54,380 - agents.newsletter_agents - INFO - Processing 30 articles through agent workflow
+2026-05-11 03:31:54,381 - agents.newsletter_agents - INFO - Research agent processing articles...
+2026-05-11 03:32:34,887 - agents.newsletter_agents - INFO - Research agent completed analysis
+2026-05-11 03:32:34,888 - agents.newsletter_agents - INFO - Analysis agent processing research...
+2026-05-11 03:33:22,938 - agents.newsletter_agents - INFO - Analysis agent completed insights
+2026-05-11 03:33:22,940 - agents.newsletter_agents - INFO - Opinion agent creating commentary...
+2026-05-11 03:34:10,902 - agents.newsletter_agents - INFO - Opinion agent completed commentary
+2026-05-11 03:34:10,903 - agents.newsletter_agents - INFO - Editor agent compiling final newsletter...
+2026-05-11 03:34:42,233 - agents.newsletter_agents - INFO - Editor agent completed final newsletter
+2026-05-11 03:34:42,235 - agents.newsletter_agents - INFO - Agent workflow completed successfully

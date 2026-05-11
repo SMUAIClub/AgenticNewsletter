@@ -21,32 +21,17 @@ def print_banner():
     ╔══════════════════════════════════════════════════════════════╗
     ║                    24/7 AI Newsletter Agent                  ║
     ║                                                              ║
-    ║  Automated AI-powered newsletter generation and delivery     ║
-    ║  Built with Crawl4AI, LangGraph, OpenRouter & Gmail API      ║
+    ║  Automated AI-powered newsletter generation                  ║
+    ║  Built with Crawl4AI, LangGraph & OpenAI API                 ║
     ╚══════════════════════════════════════════════════════════════╝
     """
     print(banner)
 
 def validate_config():
     """Validate configuration before starting"""
-    errors = []
-    
-    if not config.OPENROUTER_API_KEY:
-        errors.append("OpenRouter API key not configured")
-    
-    if not config.SENDER_EMAIL:
-        errors.append("Sender email not configured")
-    
-    if not config.RECIPIENT_EMAILS or not config.RECIPIENT_EMAILS[0]:
-        errors.append("Recipient emails not configured")
-    
-    if errors:
-        logger.error("Configuration errors found:")
-        for error in errors:
-            logger.error(f"  - {error}")
-        logger.error("Please check your .env file and configuration")
+    if not config.OPENAI_API_KEY:
+        logger.error("OpenAI API key not configured. Please check your .env file.")
         return False
-    
     return True
 
 def main():
@@ -68,7 +53,7 @@ def main():
     
     print_banner()
     logger.info(f"Starting AI Newsletter Agent in {args.mode} mode")
-    logger.info(f"Configuration: {len(config.TOPICS)} topics, {len(config.RECIPIENT_EMAILS)} recipients")
+    logger.info(f"Configuration: {len(config.TOPICS)} topics")
     
     # Validate configuration
     if not validate_config():

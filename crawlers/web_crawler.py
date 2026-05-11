@@ -1,5 +1,6 @@
 import asyncio
 import httpx
+import requests
 from typing import List, Dict, Optional
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig, BrowserConfig, CacheMode
 from crawl4ai import LLMExtractionStrategy
@@ -70,27 +71,32 @@ class WebCrawler:
             return []
     
     def crawl_rss_feeds(self, rss_urls: List[str], topic: str) -> List[Dict]:
-        """Crawl RSS feeds for articles"""
-        articles = []
-        
-        for rss_url in rss_urls:
+        """Crawl RSS feeds in parallel using a thread pool"""
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        def fetch_one(rss_url: str) -> List[Dict]:
             try:
                 feed = feedparser.parse(rss_url)
-                
+                results = []
                 for entry in feed.entries[:self.max_articles]:
-                    article = {
+                    results.append({
                         "title": entry.get("title", ""),
                         "summary": entry.get("summary", ""),
                         "url": entry.get("link", ""),
                         "published_date": entry.get("published", ""),
-                        "content": self._extract_content_from_url(entry.get("link", "")),
+                        "content": "",
                         "topic": topic
-                    }
-                    articles.append(article)
-                    
+                    })
+                return results
             except Exception as e:
                 logger.error(f"Error parsing RSS feed {rss_url}: {str(e)}")
-                
+                return []
+
+        articles = []
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = {executor.submit(fetch_one, url): url for url in rss_urls}
+            for future in as_completed(futures):
+                articles.extend(future.result())
         return articles
     
     def _extract_content_from_url(self, url: str) -> str:
@@ -157,33 +163,52 @@ class WebCrawler:
             
         return search_urls[:5]  # Limit to 5 URLs
     
+    def _build_nitter_rss_urls(self, topic: str) -> List[str]:
+        """Build Nitter RSS URLs for configured X accounts and topic search"""
+        urls = []
+        for account in config.X_ACCOUNTS:
+            urls.append(f"{config.NITTER_INSTANCE}/{account}/rss")
+        encoded_topic = urllib.parse.quote(topic)
+        urls.append(f"{config.NITTER_INSTANCE}/search/rss?q={encoded_topic}&f=tweets")
+        return urls
+
+    async def _fetch_nitter(self, topic: str) -> List[Dict]:
+        """Run synchronous Nitter RSS fetch in a thread so it doesn't block the event loop"""
+        nitter_urls = self._build_nitter_rss_urls(topic)
+        logger.info(f"Fetching {len(nitter_urls)} Nitter RSS feeds for {topic}")
+        articles = await asyncio.to_thread(self.crawl_rss_feeds, nitter_urls, topic)
+        logger.info(f"Got {len(articles)} posts from Nitter for {topic}")
+        return articles
+
+    async def _fetch_web(self, topic: str) -> List[Dict]:
+        """DuckDuckGo search + Crawl4AI pipeline"""
+        search_urls = await self.search_news_urls(topic)
+        logger.info(f"Found {len(search_urls)} URLs to crawl for {topic}")
+        crawl_results = await asyncio.gather(
+            *[self.crawl_with_crawl4ai(url, topic) for url in search_urls],
+            return_exceptions=True
+        )
+        articles = []
+        for result in crawl_results:
+            if isinstance(result, list):
+                articles.extend(result)
+            elif isinstance(result, Exception):
+                logger.error(f"Crawling task failed: {str(result)}")
+        return articles
+
     async def fetch_live_data(self, topic: str) -> List[Dict]:
         """Main method to fetch live data for a topic using dynamic search"""
         logger.info(f"Fetching live data for topic: {topic}")
-        
-        all_articles = []
-        
-        # Get dynamic URLs based on search
-        search_urls = await self.search_news_urls(topic)
-        logger.info(f"Found {len(search_urls)} URLs to crawl for {topic}")
-        
-        # Crawl found URLs using Crawl4AI
-        crawl_tasks = []
-        for url in search_urls:
-            crawl_tasks.append(self.crawl_with_crawl4ai(url, topic))
-        
-        # Execute crawling tasks concurrently
-        crawl_results = await asyncio.gather(*crawl_tasks, return_exceptions=True)
-        
-        for result in crawl_results:
-            if isinstance(result, list):
-                all_articles.extend(result)
-            elif isinstance(result, Exception):
-                logger.error(f"Crawling task failed: {str(result)}")
-        
-        # Filter articles by topic relevance and recency
+
+        nitter_articles, web_articles = await asyncio.gather(
+            self._fetch_nitter(topic),
+            self._fetch_web(topic),
+            return_exceptions=False
+        )
+
+        all_articles = nitter_articles + web_articles
         filtered_articles = self._filter_articles(all_articles, topic)
-        
+
         logger.info(f"Found {len(filtered_articles)} relevant articles for {topic}")
         return filtered_articles
     

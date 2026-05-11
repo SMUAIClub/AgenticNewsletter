@@ -5,17 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    # OpenRouter Configuration
-    OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-    OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-    
-    # Gmail Configuration
-    GMAIL_CREDENTIALS_PATH = os.getenv("GMAIL_CREDENTIALS_PATH", "credentials.json")
-    GMAIL_TOKEN_PATH = os.getenv("GMAIL_TOKEN_PATH", "token.json")
-    
+    # OpenAI Configuration
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
     # Newsletter Configuration
-    SENDER_EMAIL = os.getenv("SENDER_EMAIL")
-    RECIPIENT_EMAILS = os.getenv("RECIPIENT_EMAILS", "").split(",")
     NEWSLETTER_TITLE = os.getenv("NEWSLETTER_TITLE", "Daily AI Newsletter")
     
     # Scheduling Configuration
@@ -27,7 +20,7 @@ class Config:
     CRAWL_TIMEOUT = int(os.getenv("CRAWL_TIMEOUT", "30"))
     
     # LLM Configuration
-    DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "gpt-4-turbo-preview")
+    DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "gpt-4o")
     TEMPERATURE = float(os.getenv("TEMPERATURE", "0.7"))
     MAX_TOKENS = int(os.getenv("MAX_TOKENS", "2000"))
     
@@ -48,6 +41,20 @@ class Config:
         "https://venturebeat.com/ai/",
         "https://www.wired.com/tag/artificial-intelligence/",
         "https://www.artificialintelligence-news.com/"
+    ]
+
+    # Nitter (X/Twitter scraping via RSS)
+    NITTER_INSTANCE = os.getenv("NITTER_INSTANCE", "https://nitter.net")
+    X_ACCOUNTS = [
+        "openai",
+        "AnthropicAI",
+        "GoogleDeepMind",
+        "sama",
+        "karpathy",
+        "ylecun",
+        "huggingface",
+        "techcrunch",
+        "theverge",
     ]
 
 config = Config()

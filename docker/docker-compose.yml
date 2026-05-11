@@ -6,14 +6,13 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: ai-newsletter-agent
-    environment:
-      - PYTHONPATH=/app
     env_file:
       - ../.env
+    environment:
+      - PYTHONPATH=/app
     volumes:
       - ../logs:/app/logs
-      - ../credentials.json:/app/credentials.json:ro
-      - ../token.json:/app/token.json
+      - ../newsletters:/app/newsletters
     ports:
       - "8000:8000"
     restart: unless-stopped
@@ -30,14 +29,13 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: ai-newsletter-api
-    environment:
-      - PYTHONPATH=/app
     env_file:
       - ../.env
+    environment:
+      - PYTHONPATH=/app
     volumes:
       - ../logs:/app/logs
-      - ../credentials.json:/app/credentials.json:ro
-      - ../token.json:/app/token.json
+      - ../newsletters:/app/newsletters
     ports:
       - "8001:8000"
     restart: unless-stopped

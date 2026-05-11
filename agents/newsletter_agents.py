@@ -3,14 +3,14 @@ from langchain.schema import BaseMessage, HumanMessage, SystemMessage
 from langgraph.graph import StateGraph, END
 import json
 
-from agents.llm_client import OpenRouterClient
+from agents.llm_client import OpenAIClient
 from utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
 class NewsletterAgents:
     def __init__(self):
-        self.llm_client = OpenRouterClient()
+        self.llm_client = OpenAIClient()
         self.graph = self._create_agent_graph()
     
     def _create_agent_graph(self) -> StateGraph:
@@ -77,10 +77,11 @@ Focus on accuracy, relevance, and providing clear categorization."""
 
 Provide a structured summary that includes:
 1. **Key Categories**: Group articles by themes/topics
-2. **Most Important Stories**: Highlight the top 3-5 most significant articles
+2. **Most Important Stories**: Highlight the top 3-5 most significant articles — include the article URL for each as a markdown link
 3. **Emerging Trends**: Identify patterns across articles
 4. **Quick Facts**: Extract key statistics, dates, and figures
 
+IMPORTANT: For every article you mention, include its URL as a markdown hyperlink, e.g. [Article Title](https://...).
 Format your response in clear sections with headers."""
         
         research_summary = self.llm_client.generate_completion(
@@ -214,7 +215,8 @@ Create a complete newsletter with:
 5. **Strong Conclusion** with key takeaways
 6. **Call to Action** (encourage engagement)
 
-Format for email delivery with proper spacing and readability. Make it professional yet engaging."""
+IMPORTANT: Every story or article mentioned must include a clickable markdown link to its source, e.g. [Read more](https://...) or the title as a hyperlink. Do not drop any URLs from the research summary.
+Format in Markdown with proper spacing. Make it professional yet engaging."""
         
         final_newsletter = self.llm_client.generate_completion(
             prompt=prompt,

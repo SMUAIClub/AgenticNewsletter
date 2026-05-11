@@ -1,0 +1,89 @@
+2026-05-11 03:31:40,344 - newsletter.manual - INFO - ==================================================
+2026-05-11 03:31:40,344 - newsletter.manual - INFO - Starting newsletter generation [manual]
+2026-05-11 03:31:40,344 - newsletter.manual - INFO - ==================================================
+2026-05-11 03:31:40,344 - newsletter.manual - INFO - Step 1: Crawling all topics in parallel...
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: AI news
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: Machine Learning breakthroughs
+2026-05-11 03:31:40,345 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech startups
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: OpenAI updates
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: Google AI developments
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching live data for topic: Tech industry trends
+2026-05-11 03:31:40,346 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for AI news
+2026-05-11 03:31:40,355 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Machine Learning breakthroughs
+2026-05-11 03:31:40,368 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Tech startups
+2026-05-11 03:31:40,379 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for OpenAI updates
+2026-05-11 03:31:40,390 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Google AI developments
+2026-05-11 03:31:40,403 - crawlers.web_crawler - INFO - Fetching 10 Nitter RSS feeds for Tech industry trends
+2026-05-11 03:31:40,519 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=Tech%20industry%20trends%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,520 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=AI%20news%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,520 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech industry trends
+2026-05-11 03:31:40,658 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for AI news
+2026-05-11 03:31:40,818 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=Tech%20startups%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,818 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=OpenAI%20updates%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,818 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=Google%20AI%20developments%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,819 - httpx - INFO - HTTP Request: GET https://html.duckduckgo.com/html/?q=Machine%20Learning%20breakthroughs%20news%20site%3Atechcrunch.com%20OR%20site%3Atheverge.com%20OR%20site%3Aventurebeat.com%20OR%20site%3Awired.com "HTTP/1.1 202 Accepted"
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Tech startups
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for OpenAI updates
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Google AI developments
+2026-05-11 03:31:40,820 - crawlers.web_crawler - INFO - Found 5 URLs to crawl for Machine Learning breakthroughs
+2026-05-11 03:31:42,291 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Tech industry trends
+2026-05-11 03:31:42,431 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for OpenAI updates
+2026-05-11 03:31:42,447 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Machine Learning breakthroughs
+2026-05-11 03:31:42,683 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for AI news
+2026-05-11 03:31:42,709 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Google AI developments
+2026-05-11 03:31:43,422 - crawlers.web_crawler - INFO - Got 45 posts from Nitter for Tech startups
+2026-05-11 03:31:45,078 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,305 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,411 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,614 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:45,853 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:45,989 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:46,262 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:46,486 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:46,535 - crawlers.web_crawler - INFO - Extracted 5 articles from https://venturebeat.com/ai/
+2026-05-11 03:31:46,681 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:47,119 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:47,368 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:47,963 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.theverge.com/ai-artificial-intelligence
+2026-05-11 03:31:48,322 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:48,449 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:48,960 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:49,566 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:50,657 - crawlers.web_crawler - INFO - Extracted 0 articles from https://techcrunch.com/category/artificial-intelligence/
+2026-05-11 03:31:51,299 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:51,692 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,000 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,383 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:52,619 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:52,836 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:53,111 - crawlers.web_crawler - INFO - Extracted 0 articles from https://www.artificialintelligence-news.com/
+2026-05-11 03:31:53,458 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:53,700 - crawlers.web_crawler - INFO - Found 5 relevant articles for OpenAI updates
+2026-05-11 03:31:53,740 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech industry trends
+2026-05-11 03:31:53,987 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,077 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,166 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,187 - crawlers.web_crawler - INFO - Found 5 relevant articles for Machine Learning breakthroughs
+2026-05-11 03:31:54,277 - crawlers.web_crawler - INFO - Extracted 1 articles from https://www.wired.com/tag/artificial-intelligence/
+2026-05-11 03:31:54,284 - crawlers.web_crawler - INFO - Found 5 relevant articles for Google AI developments
+2026-05-11 03:31:54,339 - crawlers.web_crawler - INFO - Found 5 relevant articles for AI news
+2026-05-11 03:31:54,380 - crawlers.web_crawler - INFO - Found 5 relevant articles for Tech startups
+2026-05-11 03:31:54,380 - newsletter.manual - INFO - Total articles collected: 30
+2026-05-11 03:31:54,380 - newsletter.manual - INFO - Step 2: Processing articles through AI agents...
+2026-05-11 03:31:54,380 - agents.newsletter_agents - INFO - Processing 30 articles through agent workflow
+2026-05-11 03:31:54,381 - agents.newsletter_agents - INFO - Research agent processing articles...
+2026-05-11 03:32:34,799 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-11 03:32:34,887 - agents.newsletter_agents - INFO - Research agent completed analysis
+2026-05-11 03:32:34,888 - agents.newsletter_agents - INFO - Analysis agent processing research...
+2026-05-11 03:33:22,931 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-11 03:33:22,938 - agents.newsletter_agents - INFO - Analysis agent completed insights
+2026-05-11 03:33:22,940 - agents.newsletter_agents - INFO - Opinion agent creating commentary...
+2026-05-11 03:34:10,899 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-11 03:34:10,902 - agents.newsletter_agents - INFO - Opinion agent completed commentary
+2026-05-11 03:34:10,903 - agents.newsletter_agents - INFO - Editor agent compiling final newsletter...
+2026-05-11 03:34:42,229 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-11 03:34:42,233 - agents.newsletter_agents - INFO - Editor agent completed final newsletter
+2026-05-11 03:34:42,235 - agents.newsletter_agents - INFO - Agent workflow completed successfully
+2026-05-11 03:34:42,235 - newsletter.manual - INFO - Generated newsletter content length: 9629
+2026-05-11 03:34:42,237 - newsletter.manual - INFO - Newsletter saved to newsletters/newsletter_manual_20260511_033442.md
+2026-05-11 03:34:42,237 - newsletter.manual - INFO - Newsletter generation completed successfully!

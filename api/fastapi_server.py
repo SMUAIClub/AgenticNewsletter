@@ -2,11 +2,13 @@
 FastAPI server for newsletter management and monitoring
 """
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel
 from typing import List, Dict, Optional
 import asyncio
+import logging
+import queue as thread_queue
 from datetime import datetime
 import json
 
@@ -82,7 +84,6 @@ async def root():
             <h2>Configuration</h2>
             <p><strong>Topics:</strong> {len(config.TOPICS)} configured</p>
             <p><strong>Schedule:</strong> {', '.join(config.SCHEDULE_TIMES)}</p>
-            <p><strong>Recipients:</strong> {len(config.RECIPIENT_EMAILS)} configured</p>
         </div>
         
         <div>
@@ -110,69 +111,59 @@ async def get_status():
         "configuration": {
             "topics": config.TOPICS,
             "schedule_times": config.SCHEDULE_TIMES,
-            "recipients_count": len(config.RECIPIENT_EMAILS),
             "max_articles_per_topic": config.MAX_ARTICLES_PER_TOPIC
         }
     }
 
-@app.post("/generate", response_model=NewsletterResponse)
-async def generate_newsletter(
-    background_tasks: BackgroundTasks,
-    request: NewsletterRequest = None
-):
-    """Generate newsletter immediately"""
-    try:
-        newsletter_id = f"newsletter_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        
-        # Update system status
-        system_status["status"] = "generating"
-        
-        # Run newsletter generation in background
-        background_tasks.add_task(run_newsletter_generation, newsletter_id)
-        
-        return NewsletterResponse(
-            success=True,
-            message="Newsletter generation started",
-            newsletter_id=newsletter_id
-        )
-        
-    except Exception as e:
-        logger.error(f"Error starting newsletter generation: {str(e)}")
-        system_status["status"] = "error"
-        raise HTTPException(status_code=500, detail=str(e))
+@app.post("/generate")
+async def generate_newsletter(request: NewsletterRequest = None):
+    """Generate newsletter and stream logs live"""
+    newsletter_id = f"newsletter_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    system_status["status"] = "generating"
 
-async def run_newsletter_generation(newsletter_id: str):
-    """Background task to run newsletter generation"""
-    try:
-        logger.info(f"Starting background newsletter generation: {newsletter_id}")
-        
-        # Run the newsletter generation
-        await scheduler.newsletter_run()
-        
-        # Update status and history
-        system_status["status"] = "idle"
-        system_status["last_run"] = datetime.now().isoformat()
-        system_status["total_sent"] += 1
-        
-        newsletter_history.append({
-            "id": newsletter_id,
-            "timestamp": datetime.now().isoformat(),
-            "status": "completed",
-            "recipients": len(config.RECIPIENT_EMAILS)
-        })
-        
-        logger.info(f"Newsletter generation completed: {newsletter_id}")
-        
-    except Exception as e:
-        logger.error(f"Error in background newsletter generation: {str(e)}")
-        system_status["status"] = "error"
-        
-        newsletter_history.append({
-            "id": newsletter_id,
-            "timestamp": datetime.now().isoformat(),
-            "status": "failed",
-            "error": str(e)
-        })
+    q = thread_queue.Queue()
+
+    class _QueueHandler(logging.Handler):
+        def emit(self, record):
+            try:
+                q.put_nowait(self.format(record))
+            except Exception:
+                pass
+
+    handler = _QueueHandler()
+    handler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
+    root = logging.getLogger()
+    root.setLevel(logging.INFO)
+    root.addHandler(handler)
+
+    done = asyncio.Event()
+
+    async def _run():
+        try:
+            await scheduler.newsletter_run(source="manual")
+            system_status["status"] = "idle"
+            system_status["last_run"] = datetime.now().isoformat()
+            system_status["total_sent"] += 1
+            newsletter_history.append({"id": newsletter_id, "timestamp": datetime.now().isoformat(), "status": "completed"})
+        except Exception as e:
+            system_status["status"] = "error"
+            newsletter_history.append({"id": newsletter_id, "timestamp": datetime.now().isoformat(), "status": "failed", "error": str(e)})
+        finally:
+            done.set()
+
+    asyncio.create_task(_run())
+
+    async def _stream():
+        try:
+            while not done.is_set() or not q.empty():
+                try:
+                    yield q.get_nowait() + "\n"
+                except thread_queue.Empty:
+                    await asyncio.sleep(0.05)
+        finally:
+            root.removeHandler(handler)
+
+    return StreamingResponse(_stream(), media_type="text/plain")
 
 @app.get("/history")
 async def get_history():
@@ -226,7 +217,6 @@ async def get_config():
         "topics": config.TOPICS,
         "schedule_times": config.SCHEDULE_TIMES,
         "max_articles_per_topic": config.MAX_ARTICLES_PER_TOPIC,
-        "recipients_count": len(config.RECIPIENT_EMAILS),
         "newsletter_title": config.NEWSLETTER_TITLE
     }
 

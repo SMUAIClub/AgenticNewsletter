@@ -1,121 +1,143 @@
-# 24/7 AI Newsletter Agent 🤖📧
-
-
+# 24/7 AI Newsletter Agent
 
 https://github.com/user-attachments/assets/c1cfb8bb-b195-4446-8fef-9bb7278ea797
 
+An automated newsletter generation system that crawls the web for AI and tech news, processes it through a multi-agent LangGraph pipeline, and produces a polished newsletter.
 
+## Features
 
+- **Web Crawling** — Crawl4AI + DuckDuckGo search to find fresh articles for each topic
+- **Multi-Agent Pipeline** — LangGraph orchestrates Research → Analysis → Opinion → Editor agents
+- **OpenAI Powered** — Uses `gpt-4o` by default, fully configurable
+- **Web Dashboard** — FastAPI server for triggering runs and viewing history
+- **Scheduler** — Runs on a configurable daily schedule
+- **Docker Support** — Single command to run everything in a container
 
-
-An intelligent, automated newsletter generation system that crawls the web for AI and tech news, processes it through multiple AI agents, and delivers personalized newsletters via email.
-
-## 🚀 Features
-
-- **Automated Web Crawling**: Uses Crawl4AI to gather real-time news from multiple sources
-- **Multi-Agent Processing**: LangGraph orchestrates different AI agents (Research, Analysis, Opinion, Editor)
-- **Smart Scheduling**: Configurable schedule for automatic newsletter generation
-- **Email Delivery**: Gmail API integration for professional email delivery
-- **Web Dashboard**: FastAPI-based monitoring and management interface
-- **Docker Support**: Easy deployment with Docker containers
-- **Extensible Architecture**: Modular design for easy customization
-
-## 🏗️ Architecture
+## Architecture
 
 ```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Scheduler     │───▶│   Web Crawler    │───▶│  Multi-Agent    │
-│   (schedule)    │    │   (Crawl4AI)     │    │  (LangGraph)    │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                         │
-┌─────────────────┐    ┌──────────────────┐             │
-│  Email Service  │◀───│   Newsletter     │◀────────────┘
-│  (Gmail API)    │    │   Formatter      │
-└─────────────────┘    └──────────────────┘
+Scheduler
+   │
+   ▼
+Web Crawler (Crawl4AI)
+   │  fetches articles per topic
+   ▼
+LangGraph Agent Pipeline
+   ├── Researcher  →  categorizes & summarizes
+   ├── Analyst     →  insights & implications
+   ├── Opinion     →  editorial commentary
+   └── Editor      →  final formatted newsletter
 ```
 
-## 📦 Installation
+---
 
-### Prerequisites
+## Quickstart (Docker)
 
-- Python 3.11+
-- OpenRouter API key
-- Gmail API credentials
-- Docker (optional)
+**Prerequisites:** Docker + Docker Compose
 
-### Quick Start
+```bash
+# 1. Make sure .env exists with your OpenAI key
+cp .env.example .env
+# Edit .env and set OPENAI_API_KEY=sk-...
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd Newsletter_aaa
-   ```
+# 2. Build and start (scheduler + API server)
+docker compose -f docker/docker-compose.yml up -d --build
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+# 3. View live logs
+docker compose -f docker/docker-compose.yml logs -f
 
-3. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your API keys and configuration
-   ```
+# 4. Stop
+docker compose -f docker/docker-compose.yml down
+```
 
-4. **Set up Gmail API**
-   - Go to [Google Cloud Console](https://console.cloud.google.com/)
-   - Create a new project or select existing one
-   - Enable Gmail API
-   - Create credentials (OAuth 2.0 Client ID)
-   - Download `credentials.json` to project root
+| Service | URL |
+|---|---|
+| API / Dashboard | http://localhost:8001 |
 
-5. **Run the application**
-   ```bash
-   # Run once
-   python main.py --mode once
-   
-   # Start scheduler
-   python main.py --mode schedule
-   
-   # Check configuration
-   python main.py --config-check
-   ```
+> Note: The first build takes a few minutes — it installs Chromium inside the image.
 
-## ⚙️ Configuration
+### Trigger a newsletter generation
 
-### Environment Variables (.env)
+```bash
+curl -X POST http://localhost:8001/generate
+```
+
+The output is saved to `newsletters/newsletter_<timestamp>.md` in the project folder.
+
+### Single container (run once)
+
+```bash
+docker build -f docker/Dockerfile -t ai-newsletter .
+docker run --env-file .env -v $(pwd)/logs:/app/logs ai-newsletter \
+  python main.py --mode once
+```
+
+---
+
+## Quickstart (Local)
+
+**Prerequisites:** Python 3.11+
+
+```bash
+# 1. Clone and enter the repo
+git clone <repository-url>
+cd AgenticNewsletter
+
+# 2. Create a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Install Chromium for the web crawler (one-time)
+crawl4ai-setup
+
+# 5. Add your OpenAI API key
+cp .env.example .env
+# Edit .env and set OPENAI_API_KEY=sk-...
+
+# 6. Verify config
+python main.py --config-check
+
+# 7. Run a single newsletter generation
+python main.py --mode once
+```
+
+Logs are written to `logs/`. The generated newsletter content appears there.
+
+### Run the web dashboard
+
+```bash
+uvicorn api.fastapi_server:app --reload --port 8000
+```
+
+Open `http://localhost:8000` to trigger runs, view history, and manage config.
+
+---
+
+## Configuration
+
+### Environment variables (`.env`)
 
 ```env
-# OpenRouter API Configuration
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+# Required
+OPENAI_API_KEY=sk-...
 
-# Gmail API Configuration
-GMAIL_CREDENTIALS_PATH=credentials.json
-GMAIL_TOKEN_PATH=token.json
-
-# Newsletter Configuration
-SENDER_EMAIL=your_email@gmail.com
-RECIPIENT_EMAILS=recipient1@example.com,recipient2@example.com
+# Optional — shown with defaults
 NEWSLETTER_TITLE=Daily AI Newsletter
-
-# Scheduling Configuration
 SCHEDULE_TIMES=08:00,18:00
 TIMEZONE=Asia/Kolkata
-
-# Crawling Configuration
 MAX_ARTICLES_PER_TOPIC=5
 CRAWL_TIMEOUT=30
-
-# LLM Configuration
-DEFAULT_MODEL=gpt-4-turbo-preview
+DEFAULT_MODEL=gpt-4o
 TEMPERATURE=0.7
 MAX_TOKENS=2000
 ```
 
-### Topics Configuration
+### Topics
 
-Edit `config.py` to customize topics:
+Edit `config.py` to change what gets crawled:
 
 ```python
 TOPICS = [
@@ -128,215 +150,50 @@ TOPICS = [
 ]
 ```
 
-## 🐳 Docker Deployment
+---
 
-### Using Docker Compose (Recommended)
+## Run Modes
 
 ```bash
-# Build and start services
-docker-compose -f docker/docker-compose.yml up -d
-
-# View logs
-docker-compose -f docker/docker-compose.yml logs -f
-
-# Stop services
-docker-compose -f docker/docker-compose.yml down
+python main.py --mode once      # generate once and exit
+python main.py --mode schedule  # run on SCHEDULE_TIMES continuously
+python main.py --config-check   # validate config and exit
 ```
 
-### Manual Docker Build
+## API Endpoints
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/` | Dashboard |
+| `GET` | `/status` | System status |
+| `POST` | `/generate` | Trigger generation |
+| `GET` | `/history` | Last 10 runs |
+| `POST` | `/schedule/start` | Start scheduler |
+| `POST` | `/schedule/stop` | Stop scheduler |
+| `GET` | `/config` | Current config |
+| `POST` | `/config` | Update config (runtime) |
+| `GET` | `/health` | Health check |
 
 ```bash
-# Build image
-docker build -f docker/Dockerfile -t ai-newsletter-agent .
-
-# Run container
-docker run -d \
-  --name newsletter-agent \
-  --env-file .env \
-  -v $(pwd)/logs:/app/logs \
-  -v $(pwd)/credentials.json:/app/credentials.json:ro \
-  -p 8000:8000 \
-  ai-newsletter-agent
-```
-
-## 🌐 Web Dashboard
-
-Access the web dashboard at `http://localhost:8000` when running the FastAPI server:
-
-```bash
-# Start API server
-python -m uvicorn api.fastapi_server:app --host 0.0.0.0 --port 8000
-```
-
-### API Endpoints
-
-- `GET /` - Dashboard homepage
-- `GET /status` - System status
-- `POST /generate` - Generate newsletter immediately
-- `GET /history` - Newsletter generation history
-- `POST /schedule/start` - Start scheduler
-- `POST /schedule/stop` - Stop scheduler
-- `GET /config` - Get configuration
-- `POST /config` - Update configuration
-- `GET /health` - Health check
-
-## 🔧 Usage Examples
-
-### Command Line
-
-```bash
-# Generate newsletter once
-python main.py --mode once
-
-# Start scheduled service
-python main.py --mode schedule
-
-# Check configuration
-python main.py --config-check
-```
-
-### API Usage
-
-```bash
-# Generate newsletter via API
+# Examples
 curl -X POST http://localhost:8000/generate
-
-# Check status
 curl http://localhost:8000/status
-
-# Start scheduler
-curl -X POST http://localhost:8000/schedule/start
 ```
-
-### Python Integration
-
-```python
-from scheduler.newsletter_scheduler import NewsletterScheduler
-
-# Create scheduler instance
-scheduler = NewsletterScheduler()
-
-# Run once
-scheduler.run_once()
-
-# Start scheduled service
-scheduler.start_scheduler()
-```
-
-## 🧩 Architecture Components
-
-### 1. Web Crawler (`crawlers/web_crawler.py`)
-- Uses Crawl4AI for intelligent web scraping
-- Supports RSS feeds and direct URL crawling
-- Filters content by relevance and recency
-
-### 2. Multi-Agent System (`agents/newsletter_agents.py`)
-- **Research Agent**: Categorizes and summarizes articles
-- **Analysis Agent**: Provides deep insights and implications
-- **Opinion Agent**: Adds editorial commentary
-- **Editor Agent**: Compiles final newsletter with formatting
-
-### 3. LLM Client (`agents/llm_client.py`)
-- OpenRouter API integration
-- Retry logic and error handling
-- Configurable models and parameters
-
-### 4. Email Service (`email_service/gmail_client.py`)
-- Gmail API integration
-- HTML email formatting
-- Batch sending support
-
-### 5. Scheduler (`scheduler/newsletter_scheduler.py`)
-- Configurable scheduling
-- Async workflow orchestration
-- Error handling and logging
-
-## 📊 Monitoring and Logging
-
-- Logs are stored in `logs/` directory
-- Daily log rotation
-- Structured logging with timestamps
-- Health check endpoints for monitoring
-
-## 🔒 Security Considerations
-
-- API keys stored in environment variables
-- OAuth 2.0 for Gmail API authentication
-- No sensitive data in logs
-- Docker secrets support
-
-## 🚀 Scaling and Production
-
-### Performance Optimization
-- Async/await for concurrent operations
-- Connection pooling for HTTP requests
-- Caching for frequently accessed data
-
-### Production Deployment
-- Use environment-specific configurations
-- Set up monitoring and alerting
-- Configure log aggregation
-- Use a process manager (PM2, systemd)
-- Set up reverse proxy (nginx)
-
-### Monitoring
-- Health check endpoints
-- Metrics collection
-- Error tracking
-- Performance monitoring
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-1. **Gmail API Authentication**
-   - Ensure `credentials.json` is in the project root
-   - Check OAuth consent screen configuration
-   - Verify Gmail API is enabled
-
-2. **OpenRouter API Issues**
-   - Verify API key is correct
-   - Check rate limits
-   - Ensure sufficient credits
-
-3. **Crawling Issues**
-   - Some sites may block automated requests
-   - Adjust timeout settings
-   - Check network connectivity
-
-4. **Scheduling Issues**
-   - Verify timezone configuration
-   - Check system time
-   - Review log files for errors
-
-### Debug Mode
-
-```bash
-# Enable debug logging
-export LOG_LEVEL=DEBUG
-python main.py --mode once
-```
-
-## 📞 Support
-
-For issues and questions:
-- Check the logs in `logs/` directory
-- Review configuration settings
-- Check API credentials and permissions
-- Consult the troubleshooting section
 
 ---
 
-Built with ❤️ using Python, Crawl4AI, LangGraph, OpenRouter, and Gmail API.
+## Troubleshooting
+
+**Crawling fails / empty articles**
+- Some sites block automated requests — the crawler falls back to `httpx` automatically
+- Increase `CRAWL_TIMEOUT` in `.env`
+
+**OpenAI errors**
+- Double-check `OPENAI_API_KEY` in `.env`
+- Verify you have quota/credits on the key
+
+**Playwright not found (local)**
+- Run `crawl4ai-setup` inside your activated virtual environment
+
+**Docker build slow**
+- Normal on first build; Chromium download is ~200MB. Subsequent builds use the cache layer.
